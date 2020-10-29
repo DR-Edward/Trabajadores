@@ -84,10 +84,6 @@ jobs:
           command: |
             ssh ${PROD_SERVER_USER}@$PROD_SERVER_IP "cd /var/www/html/workers/dev && php artisan migrate --force"
       - run:
-          name: Webpack Compilation
-          command: |
-            ssh ${PROD_SERVER_USER}@$PROD_SERVER_IP "cd /var/www/html/workers/dev && npm run dev"
-      - run:
           name: Building Project (build:development:refresh)
           command: |
             ssh ${PROD_SERVER_USER}@$PROD_SERVER_IP "cd /var/www/html/workers/dev && sudo php artisan build:development:refresh"
@@ -134,10 +130,6 @@ jobs:
           name: Install Project Dependencies
           command: |
             ssh ${PROD_SERVER_USER}@$PROD_SERVER_IP "cd $UAT_DIRECTORY && composer install --optimize-autoloader --no-dev -n --prefer-dist"
-      - run:
-          name: Webpack Compilation
-          command: |
-            ssh ${PROD_SERVER_USER}@$PROD_SERVER_IP "cd $UAT_DIRECTORY && npm run production"
       - run:
           name: Optimizing Configuration Loading
           command: |
@@ -189,10 +181,6 @@ jobs:
           name: Install Project Dependencies
           command: |
             ssh ${PROD_SERVER_USER}@$PROD_SERVER_IP "cd $PROD_DIRECTORY && composer install --optimize-autoloader --no-dev -n --prefer-dist"
-      - run:
-          name: Webpack Compilation
-          command: |
-            ssh ${PROD_SERVER_USER}@$PROD_SERVER_IP "cd $PROD_DIRECTORY && npm run production"
       - run:
           name: Optimizing Configuration Loading
           command: |
