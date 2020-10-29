@@ -17,7 +17,7 @@ class LoginController extends Controller
      * @return \Illuminate\Http\Response (JSON)
      */
     public function api_login(TokenCreateRequest $request){
-        $loginData = User::create_token($request);
+        $loginData = User::create_token(request('email'), request('password'));
         return response()->json($loginData);
     }
     
@@ -27,7 +27,7 @@ class LoginController extends Controller
      * @return \Illuminate\Http\Response (JSON)
      */
     public function api_logout(Request $request){
-        $logoutData = User::revoke_token($request);
+        $logoutData = User::revoke_token($request->user()->token());
         return response()->json($logoutData);
     }
 

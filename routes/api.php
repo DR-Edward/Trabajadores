@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,15 +13,12 @@ use App\Http\Controllers\Auth\LoginController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-//  Route::resource('fabricantes','FabricanteController',['except'=>['edit','create'] ]);
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//  Route::apiResource('fabricantes','FabricanteController',['except'=>['edit','create'] ]);
 
-Route::group(['prefix' => 'auth'], function () {
-    Route::post('login', [LoginController::class, "api_login"]);
+Route::group(['prefix' => 'auth', 'namespace' => 'App\Http\Controllers\Auth'], function () {
+    Route::post('login', "LoginController@api_login");
   
     Route::group(['middleware' => 'auth:api'], function() {
-        Route::post('logout', [LoginController::class, "api_logout"]);
+        Route::post('logout', "LoginController@api_logout");
     });
 });

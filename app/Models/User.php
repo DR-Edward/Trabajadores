@@ -43,12 +43,13 @@ class User extends Authenticatable
     ];
 
     /**
-     * @param Request $request
-     * Make token
-     * @return string
+     * Get token
+     * @param  string  $email
+     * @param  string  $password
+     * @return array
     */
-    public static function create_token($request) {
-        if(!\Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
+    public static function create_token($email, $password) {
+        if(!\Auth::attempt(['email' => $email, 'password' => $password])) {
             return response()->json([
                 'message_type' => 'error',
                 'message_text' => 'Incorrect user or password',
@@ -65,12 +66,12 @@ class User extends Authenticatable
     }
 
     /**
-     * @param Request $request
      * Revoke Token
-     * @return string
+     * @param  string  $tokeb
+     * @return array
     */
-    public static function revoke_token($request) {
-        $request->user()->token()->revoke();
+    public static function revoke_token($token) {
+        $token->revoke();
         
         return [
             'message_type' => 'success',
