@@ -15,7 +15,7 @@
 4. Correr php artisan key:generate
 5. Si desea el modo desarrollo - Correr php artisan build:development:refresh - Ejecuta migraciones, seeders de desarrollo y genera keys de passport
 6. Si desea el modo producción - Correr php artisan build:production:refresh - Ejecuta migraciones, seeders de producción y genera keys de passport
-6. Si desea el modo estresado - Correr php artisan build:production:stress - Ejecuta migraciones, seeders de stress (Inserta 5 millones de registros en aproximadamente 350,009ms) y genera keys de passport
+6. Si desea el modo estresado - Correr php artisan build:production:stress - Ejecuta migraciones, seeders de stress (Inserta 50 mil registros) y genera keys de passport
 
 ## Acceso
 
