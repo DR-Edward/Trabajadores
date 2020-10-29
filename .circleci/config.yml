@@ -70,7 +70,7 @@ jobs:
       - run:
           name: Enable Maintenance Mode
           command: |
-            ssh ${PROD_SERVER_USER}@$PROD_SERVER_IP "cd /var/www/html/workers/dev && php artisan down --message=\"Update in progress\" --retry=30"
+            ssh ${PROD_SERVER_USER}@$PROD_SERVER_IP "cd /var/www/html/workers/dev && php artisan down --retry=30"
       - run:
           name: Checkout Develop
           command: |
@@ -125,7 +125,7 @@ jobs:
       - run:
           name: Enable Maintenance Mode
           command: |
-            ssh ${PROD_SERVER_USER}@$PROD_SERVER_IP "cd $UAT_DIRECTORY && php artisan down --message=\"Update in progress\" --retry=30"
+            ssh ${PROD_SERVER_USER}@$PROD_SERVER_IP "cd $UAT_DIRECTORY && php artisan down --retry=30"
       #- run:
       #    name: Backup uat Database
       #    command: |
@@ -184,7 +184,7 @@ jobs:
       - run:
           name: Enable Maintenance Mode
           command: |
-            ssh ${PROD_SERVER_USER}@$PROD_SERVER_IP "cd $PROD_DIRECTORY && php artisan down --message=\"Update in progress\" --retry=30"
+            ssh ${PROD_SERVER_USER}@$PROD_SERVER_IP "cd $PROD_DIRECTORY && php artisan down --retry=30"
       #- run:
       #    name: Backup Database
       #    command: |
