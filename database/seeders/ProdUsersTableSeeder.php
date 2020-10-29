@@ -13,7 +13,7 @@ class ProdUsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::create([
+        User::create([
             'id' => 1,
             'name' => 'Edward Delgado',
             'email' => 'admin@dredward.site',

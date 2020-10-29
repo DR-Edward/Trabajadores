@@ -13,11 +13,15 @@ class DevUsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::create([
+        User::create([
             'id' => 1,
             'name' => 'Edward Delgado',
             'email' => 'admin@dredward.site',
             'password' => \Hash::make('tUgxsc9Nqm4IwO3W'),
         ]);
+
+        User::factory()
+            ->times(15)
+            ->create();
     }
 }
