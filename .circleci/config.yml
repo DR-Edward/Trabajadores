@@ -84,10 +84,6 @@ jobs:
           command: |
             ssh ${PROD_SERVER_USER}@$PROD_SERVER_IP "cd /var/www/html/workers/dev && php artisan migrate --force"
       - run:
-          name: Install NPM Dependencies
-          command: |
-            ssh ${PROD_SERVER_USER}@$PROD_SERVER_IP "cd /var/www/html/workers/dev && npm ci"
-      - run:
           name: Webpack Compilation
           command: |
             ssh ${PROD_SERVER_USER}@$PROD_SERVER_IP "cd /var/www/html/workers/dev && npm run dev"
@@ -138,10 +134,6 @@ jobs:
           name: Install Project Dependencies
           command: |
             ssh ${PROD_SERVER_USER}@$PROD_SERVER_IP "cd $UAT_DIRECTORY && composer install --optimize-autoloader --no-dev -n --prefer-dist"
-      - run:
-          name: Install NPM Dependencies
-          command: |
-            ssh ${PROD_SERVER_USER}@$PROD_SERVER_IP "cd $UAT_DIRECTORY && npm ci"
       - run:
           name: Webpack Compilation
           command: |
@@ -197,10 +189,6 @@ jobs:
           name: Install Project Dependencies
           command: |
             ssh ${PROD_SERVER_USER}@$PROD_SERVER_IP "cd $PROD_DIRECTORY && composer install --optimize-autoloader --no-dev -n --prefer-dist"
-      - run:
-          name: Install NPM Dependencies
-          command: |
-            ssh ${PROD_SERVER_USER}@$PROD_SERVER_IP "cd $PROD_DIRECTORY && npm ci"
       - run:
           name: Webpack Compilation
           command: |
