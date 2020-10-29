@@ -125,7 +125,7 @@ jobs:
       - run:
           name: Enable Maintenance Mode
           command: |
-            ssh ${PROD_SERVER_USER}@$PROD_SERVER_IP "cd $UAT_DIRECTORY && php artisan down --retry=30"
+            ssh ${PROD_SERVER_USER}@$PROD_SERVER_IP "cd $UAT_DIRECTORY && php artisan down"
       #- run:
       #    name: Backup uat Database
       #    command: |
