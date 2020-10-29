@@ -15,7 +15,7 @@ class DevWorkerSeeder extends Seeder
     public function run()
     {
         Worker::factory()
-            ->times(5)
+            ->times(15)
             ->create();
     }
 }

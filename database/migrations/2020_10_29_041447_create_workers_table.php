@@ -18,8 +18,8 @@ class CreateWorkersTable extends Migration
             $table->string('firstName');
             $table->string('lastName');
             $table->date('birthday');
-            $table->string('email');
-            $table->string('phone');
+            $table->string('email')->unique();
+            $table->string('phone', 10);
             $table->date('hiredDate');
             $table->string('banckAccountNumber', 31);
             $table->decimal('salary', 9, 2);
