@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Worker;
 
-class DevWorkerSeeder extends Seeder
+class DevWorkersSeeder extends Seeder
 {
     /**
      * Run the database seeds.
