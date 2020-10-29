@@ -20,7 +20,7 @@ class StressWorkersSeeder extends Seeder
         $date = now()->toDateTimeString();
         $data = [];
         
-        for ($i=0; $i < 5000000; $i++) { 
+        for ($i=0; $i < 50000; $i++) { 
             $data[] = [
                 'firstName' => "Fake:",
                 'lastName' => "".$i,
