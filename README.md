@@ -1,6 +1,6 @@
 ## Workers Manager 
 
-**[DEV Demo](http://dev-workers.dredward.site) (5,000,000 registros)**
+**[DEV Demo](http://dev-workers.dredward.site) (50,000 registros)**
 **[UAT Demo](http://uat-workers.dredward.site) (entorno completamente limpio)**
 
 ## Status: 
