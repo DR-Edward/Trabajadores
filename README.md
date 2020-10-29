@@ -1,61 +1,352 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## Workers Manager 
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**[DEV Demo](http://dev-workers.dredward.site) (5,000,000 registros)**
+**[UAT Demo](http://uat-workers.dredward.site) (entorno completamente limpio)**
 
-## About Laravel
+## Status: 
+* API: Terminado
+* Integración continua: Terminado con CircleCi
+* Pruebas de integración: Pendiente
+* Pruebas unitarias: al 50%
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Instalación rápida
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+1. Clonar este repo
+2. Correr composer install
+3. Crear un archivo de entorno (.env) con las configuraciónes de la su base de datos local (No hay que agregar el archivo .env al repositorio). Se puede tomar el archivo `.env.example` como base
+4. Correr php artisan key:generate
+5. Si desea el modo desarrollo - Correr php artisan build:development:refresh - Ejecuta migraciones, seeders de desarrollo y genera keys de passport
+6. Si desea el modo producción - Correr php artisan build:production:refresh - Ejecuta migraciones, seeders de producción y genera keys de passport
+6. Si desea el modo estresado - Correr php artisan build:production:stress - Ejecuta migraciones, seeders de stress (Inserta 5 millones de registros en aproximadamente 350,009ms) y genera keys de passport
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Acceso
 
-## Learning Laravel
+* Usuario: admin@dredward.site
+* Contraseña: tUgxsc9Nqm4IwO3W
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Api
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Endpoints
 
-## Laravel Sponsors
+<*Environment*> = http://dev-workers.dredward.site/api || http://uat-workers.dredward.site/api
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+##### <*Environment*>/auth/login
+``Method: POST``
+```
+Params: 
+```
+```
+Headers: 
+{
+  Content-Type: application/json,
+  Accept: application/json,
+}
+```
+```
+Payload: 
+{
+	"firstName": "Edward",
+	"lastName": "Delgado",
+	"birthday": "1994-09-07",
+	"email": "edward@dredward.site",
+	"phone": 6182122364,
+	"hiredDate": "2020-10-29",
+	"banckAccountNumber": "xxxxxxxxxxxx1234",
+	"salary": 20000.20
+}
+```
 
-### Premium Partners
+```
+OK Response: 
+{
+  "data": {
+    "firstName": "Edward",
+    "lastName": "Delgado",
+    "birthday": "1994-09-07",
+    "email": "edward@dredward.site",
+    "hiredDate": "2020-10-29",
+    "banckAccountNumber": "xxxxxxxxxxxx1234",
+    "salary": 20000.2,
+    "updated_at": "2020-10-29T22:23:10.000000Z",
+    "created_at": "2020-10-29T22:23:10.000000Z",
+    "id": 2,
+    "full_name": "Edward Delgado",
+    "phone_formatted": "(618) 212 2364"
+  },
+  "message_type": "success",
+  "message_text": "Created successfully",
+  "code": 200
+}
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
+##### <*Environment*>/auth/logout
+``Method: POST``
+```
+Params: 
+```
+```
+Headers: 
+{
+  Content-Type: application/json,
+  Accept: application/json,
+  Authorization: Bearer Token
+}
+```
+```
+Payload: 
+```
 
-## Contributing
+```
+OK Response: 
+{
+  "message_type": "success",
+  "message_text": "See you later"
+}
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+##### <*Environment*>/workers
+``Method: GET``
+```
+Params: 
+Page: int
+```
+```
+Headers: 
+{
+  Content-Type: application/json,
+  Accept: application/json,
+  Authorization: Bearer Token
+}
+```
+```
+Payload: 
+```
 
-## Code of Conduct
+```
+OK Response: 
+{
+  "current_page": 1,
+  "data": [
+    {
+      "id": 1,
+      "firstName": "Edward",
+      "lastName": "Delgado",
+      "birthday": "1994-09-07",
+      "email": "edward@dredward.site",
+      "hiredDate": "2020-10-29",
+      "banckAccountNumber": "xxxxxxxxxxxx1234",
+      "salary": 20000.2,
+      "deleted_at": null,
+      "created_at": "2020-10-29T22:21:22.000000Z",
+      "updated_at": "2020-10-29T22:21:22.000000Z",
+      "full_name": "Edward Delgado",
+      "phone_formatted": "(618) 212 2364"
+    }
+  ],
+  "first_page_url": "http:\/\/uat-workers.dredward.site\/api\/workers?page=1",
+  "from": 1,
+  "last_page": 1,
+  "last_page_url": "http:\/\/uat-workers.dredward.site\/api\/workers?page=1",
+  "links": [
+    {
+      "url": null,
+      "label": "&laquo; Previous",
+      "active": false
+    },
+    {
+      "url": "http:\/\/uat-workers.dredward.site\/api\/workers?page=1",
+      "label": 1,
+      "active": true
+    },
+    {
+      "url": null,
+      "label": "Next &raquo;",
+      "active": false
+    }
+  ],
+  "next_page_url": null,
+  "path": "http:\/\/uat-workers.dredward.site\/api\/workers",
+  "per_page": 10,
+  "prev_page_url": null,
+  "to": 1,
+  "total": 1
+}
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+##### <*Environment*>/workers/{id}
+``Method: GET``
+```
+Params: 
+int - id
+```
+```
+Headers: 
+{
+  Content-Type: application/json,
+  Accept: application/json,
+  Authorization: Bearer Token
+}
+```
+```
+Payload: 
+```
 
-## Security Vulnerabilities
+```
+OK Response: 
+{
+  "data": {
+    "id": 1,
+    "firstName": "Edward",
+    "lastName": "Delgado",
+    "birthday": "1994-09-07",
+    "email": "edward@dredward.site",
+    "hiredDate": "2020-10-29",
+    "banckAccountNumber": "xxxxxxxxxxxx1234",
+    "salary": 20000.2,
+    "deleted_at": null,
+    "created_at": "2020-10-29T22:21:22.000000Z",
+    "updated_at": "2020-10-29T22:21:22.000000Z",
+    "full_name": "Edward Delgado",
+    "phone_formatted": "(618) 212 2364"
+  },
+  "message_type": "success",
+  "message_text": "Found it.",
+  "code": 200
+}
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+##### <*Environment*>/workers
+``Method: POST``
+```
+Params: 
+```
+```
+Headers: 
+{
+  Content-Type: application/json,
+  Accept: application/json,
+  Authorization: Bearer Token
+}
+```
+```
+Payload: 
+{
+  "firstName": "Edward",
+  "lastName": "Delgado",
+  "birthday": "1994-09-07",
+  "email": "edward@dredward.site",
+  "phone": 6182122364,
+  "hiredDate": "2020-10-29",
+  "banckAccountNumber": "xxxxxxxxxxxx1234",
+  "salary": 20000.20
+}
+```
 
-## License
+```
+OK Response: 
+{
+  "data": {
+    "firstName": "Edward",
+    "lastName": "Delgado",
+    "birthday": "1994-09-07",
+    "email": "edward@dredward.site",
+    "hiredDate": "2020-10-29",
+    "banckAccountNumber": "xxxxxxxxxxxx1234",
+    "salary": 20000.2,
+    "updated_at": "2020-10-29T22:23:10.000000Z",
+    "created_at": "2020-10-29T22:23:10.000000Z",
+    "id": 2,
+    "full_name": "Edward Delgado",
+    "phone_formatted": "(618) 212 2364"
+  },
+  "message_type": "success",
+  "message_text": "Created successfully",
+  "code": 200
+}
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+##### <*Environment*>/workers/{id}
+``Method: PUT``
+```
+Params: 
+int - id
+```
+```
+Headers: 
+{
+  Content-Type: application/json,
+  Accept: application/json,
+  Authorization: Bearer Token
+}
+```
+```
+Payload: 
+{
+	"firstName": "Edward Iovanny",
+	"lastName": "Delgado",
+	"birthday": "1994-09-07",
+	"email": "edward@dredward.site",
+	"phone": 6182122364,
+	"hiredDate": "2020-10-29",
+	"banckAccountNumber": "xxxxxxxxxxxx1234",
+	"salary": 20000.00
+}
+```
+
+```
+OK Response: 
+{
+  "data": true,
+  "message_type": "success",
+  "message_text": "Updated",
+  "code": 200
+}
+```
+
+##### <*Environment*>/workers/{id}
+``Method: DELETE``
+```
+Params: 
+int - id
+```
+```
+Headers: 
+{
+  Content-Type: application/json,
+  Accept: application/json,
+  Authorization: Bearer Token
+}
+```
+```
+Payload: 
+```
+
+```
+OK Response: 
+{
+  "data": {
+    "id": 1,
+    "firstName": "Edward Iovanny",
+    "lastName": "Delgado",
+    "birthday": "1994-09-07",
+    "email": "edward@dredward.site",
+    "hiredDate": "2020-10-29",
+    "banckAccountNumber": "xxxxxxxxxxxx1234",
+    "salary": 20000,
+    "deleted_at": null,
+    "created_at": "2020-10-29T22:21:22.000000Z",
+    "updated_at": "2020-10-29T22:21:45.000000Z",
+    "full_name": "Edward Iovanny Delgado",
+    "phone_formatted": "(618) 212 2364"
+  },
+  "message_type": "success",
+  "message_text": "Deleted",
+  "code": 200
+}
+```
+
+
+### Insomnia Collections
+Se puede obtener una colección completa con todos los endpoints por medio de los siguientes archivos:
+* **DEV** - **[file](https://github.com/DR-Edward/Workers/blob/master/importation/dev/Insomnia_2020-10-29_dev.json)**
+* **UAT** - **[file](https://github.com/DR-Edward/Workers/blob/master/importation/uat/Insomnia_2020-10-29_uat.json)**
