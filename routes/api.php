@@ -15,10 +15,15 @@ use Illuminate\Support\Facades\Route;
 */
 //  Route::apiResource('fabricantes','FabricanteController',['except'=>['edit','create'] ]);
 
-Route::group(['prefix' => 'auth', 'namespace' => 'App\Http\Controllers\Auth'], function () {
+Route::group([
+    'prefix' => 'auth', 
+    'namespace' => 'App\Http\Controllers\Auth'
+], function () {
     Route::post('login', "LoginController@api_login");
   
-    Route::group(['middleware' => 'auth:api'], function() {
+    Route::group([
+        'middleware' => ['auth:api']
+    ], function() {
         Route::post('logout', "LoginController@api_logout");
     });
 });
