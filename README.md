@@ -43,37 +43,36 @@ Headers:
 ```
 Payload: 
 {
-	"firstName": "Edward",
-	"lastName": "Delgado",
-	"birthday": "1994-09-07",
-	"email": "edward@dredward.site",
-	"phone": 6182122364,
-	"hiredDate": "2020-10-29",
-	"banckAccountNumber": "xxxxxxxxxxxx1234",
-	"salary": 20000.20
+  "email":"admin@dredward.site",
+  "password":"tUgxsc9Nqm4IwO3W"
 }
 ```
 
 ```
 OK Response: 
 {
-  "data": {
-    "firstName": "Edward",
-    "lastName": "Delgado",
-    "birthday": "1994-09-07",
-    "email": "edward@dredward.site",
-    "hiredDate": "2020-10-29",
-    "banckAccountNumber": "xxxxxxxxxxxx1234",
-    "salary": 20000.2,
-    "updated_at": "2020-10-29T22:23:10.000000Z",
-    "created_at": "2020-10-29T22:23:10.000000Z",
-    "id": 2,
-    "full_name": "Edward Delgado",
-    "phone_formatted": "(618) 212 2364"
+  "user": {
+    "id": 1,
+    "name": "Edward Delgado",
+    "email": "admin@dredward.site",
+    "email_verified_at": null,
+    "created_at": "2020-10-29T23:02:28.000000Z",
+    "updated_at": "2020-10-29T23:02:28.000000Z"
   },
-  "message_type": "success",
-  "message_text": "Created successfully",
-  "code": 200
+  "credentials": {
+    "accessToken": "FULL_TOKEN",
+    "token": {
+      "id": "a05dc27a8afbb7d52143d36b19812a890ed0b1390ff898c6e7d2324293b9ea770735ef7b9b2eb463",
+      "user_id": 1,
+      "client_id": 3,
+      "name": "Access from API client",
+      "scopes": [],
+      "revoked": false,
+      "created_at": "2020-12-09 02:11:09",
+      "updated_at": "2020-12-09 02:11:09",
+      "expires_at": "2021-12-09T02:11:09.000000Z"
+    }
+  }
 }
 ```
 
@@ -87,7 +86,7 @@ Headers:
 {
   Content-Type: application/json,
   Accept: application/json,
-  Authorization: Bearer Token
+  Authorization: Bearer FULL_TOKEN
 }
 ```
 ```
@@ -106,14 +105,14 @@ OK Response:
 ``Method: GET``
 ```
 Params: 
-Page: int
+page: int
 ```
 ```
 Headers: 
 {
   Content-Type: application/json,
   Accept: application/json,
-  Authorization: Bearer Token
+  Authorization: Bearer FULL_TOKEN
 }
 ```
 ```
@@ -182,7 +181,7 @@ Headers:
 {
   Content-Type: application/json,
   Accept: application/json,
-  Authorization: Bearer Token
+  Authorization: Bearer FULL_TOKEN
 }
 ```
 ```
@@ -223,7 +222,7 @@ Headers:
 {
   Content-Type: application/json,
   Accept: application/json,
-  Authorization: Bearer Token
+  Authorization: Bearer FULL_TOKEN
 }
 ```
 ```
@@ -274,7 +273,7 @@ Headers:
 {
   Content-Type: application/json,
   Accept: application/json,
-  Authorization: Bearer Token
+  Authorization: Bearer FULL_TOKEN
 }
 ```
 ```
@@ -312,7 +311,7 @@ Headers:
 {
   Content-Type: application/json,
   Accept: application/json,
-  Authorization: Bearer Token
+  Authorization: Bearer FULL_TOKEN
 }
 ```
 ```
